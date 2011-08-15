@@ -44,7 +44,6 @@
 # include <math.h>
 # include <float.h>
 # include <limits.h>
-# include <sys/time.h>
 
 /* INSTRUCTIONS:
  *
@@ -60,8 +59,8 @@
 #ifndef NTIMES
 #   define NTIMES	10
 #endif
-#ifndef OFFSET
-#   define OFFSET	0
+#ifndef ARY_OFFSET
+#   define ARY_OFFSET	0
 #endif
 
 /*
@@ -94,9 +93,9 @@
 # define MAX(x,y) ((x)>(y)?(x):(y))
 # endif
 
-static double	a[N+OFFSET],
-		b[N+OFFSET],
-		c[N+OFFSET];
+static double	a[N+ARY_OFFSET],
+		b[N+ARY_OFFSET],
+		c[N+ARY_OFFSET];
 
 static double	avgtime[4] = {0}, maxtime[4] = {0},
 		mintime[4] = {FLT_MAX,FLT_MAX,FLT_MAX,FLT_MAX};
@@ -141,9 +140,9 @@ main()
 
     printf(HLINE);
 #ifdef NO_LONG_LONG
-    printf("Array size = %d, Offset = %d\n" , N, OFFSET);
+    printf("Array size = %d, Offset = %d\n" , N, ARY_OFFSET);
 #else
-    printf("Array size = %llu, Offset = %d\n", (unsigned long long) N, OFFSET);
+    printf("Array size = %llu, Offset = %d\n", (unsigned long long) N, ARY_OFFSET);
 #endif
 
     printf("Total memory required = %.1f MB.\n",
@@ -321,17 +320,17 @@ checktick()
 /* A gettimeofday routine to give access to the wall
    clock timer on most UNIX-like systems.  */
 
-#include <sys/time.h>
+#include <time.h>
 
 double mysecond()
 {
-        struct timeval tp;
-        struct timezone tzp;
-        int i;
-
-        i = gettimeofday(&tp,&tzp);
-        return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
+	struct timespec tp;
+	
+	clock_gettime(CLOCK_REALTIME, &tp);
+	
+	return ( (double) tp.tv_sec + (double) tp.tv_nsec * 1.e-9 );
 }
+
 
 void checkSTREAMresults ()
 {
