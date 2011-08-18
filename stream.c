@@ -124,7 +124,16 @@ extern void tuned_STREAM_Triad(double scalar);
 extern int omp_get_num_threads();
 #endif
 
+int stream(void);
+
+#ifndef VXWORKS
 int main(void)
+{
+    return stream();
+}
+#endif
+
+int stream(void)
 {
     int			quantum, checktick();
     int			BytesPerWord;
@@ -134,7 +143,7 @@ int main(void)
     /* --- SETUP --- determine precision and check timing --- */
 
     printf(HLINE);
-    printf("STREAM version $Revision: 5.9 $\n");
+    printf("STREAM version $Revision: 5.9 $ Arranged\n");
     printf(HLINE);
     BytesPerWord = sizeof(double);
     printf("This system uses %d bytes per DOUBLE PRECISION word.\n",
