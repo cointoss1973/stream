@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -g -Wall -O0
 #LDFLAGS = 
-#LDLIBS = 
+LDLIBS = -lrt
 
 EXE = stream
 OBJS = stream.o
