@@ -1,4 +1,13 @@
-stream measures memory transfer rates in MB/s for simple.
+STREAM : stream measures memory bandwidth in MB/s for simple.
 
-see also http://www.cs.virginia.edu/stream/FTP/Code/stream.c
+1. original
+
+The STREAM benchmark is a simple synthetic benchmark program that measures sustainable memory bandwidth (in MB/s) and the corresponding computation rate for simple vector kernels. 
+
+http://www.cs.virginia.edu/stream/
+
+2. Porting to folowing systems.
+ VxWorks 5.5
+ VxWorks 6.8
+ Cygwin 1.7
 

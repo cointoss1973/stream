@@ -55,7 +55,7 @@
 
 #ifndef N
 /*#   define N	2000000*/
-#   define N	2000000
+#   define N	(2000000*5)
 #endif
 #ifndef NTIMES
 #   define NTIMES	10
@@ -329,9 +329,10 @@ int checktick(void)
 
 
 
-/* A gettimeofday routine to give access to the wall
-   clock timer on most UNIX-like systems.  */
-
+/*
+ *  clock_gettime routine to give access to the wall
+ *  clock timer on most UNIX-like systems.  
+ */
 #include <time.h>
 
 double mysecond(void)
